@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 # Load the data
 data = pd.read_csv('2025_03_13_genomic_trajectory_SNP_table_withPvalues.csv')
 
-# Convert p-values to -log10(p-value)
+# Convert p-values to -log10(p-value) (Makes it easier to fit)
 data['negative_log_pvalue'] = -np.log10(data['pvalue'])
 
 # Prepare features and target
@@ -54,4 +54,4 @@ plt.title('Linear Regression: Converted Position vs Average Frequency')
 plt.legend()
 
 plt.tight_layout()
-plt.show()
+plt.show() # The plot is almost linear, I think I might have used the wrong position?
