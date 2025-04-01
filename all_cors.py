@@ -19,11 +19,14 @@ for col in df.columns[5:-2]:  # Skip first few columns (chr, pos, ref, alt) and 
                 "Selection": selection,   # CACO, CAO, NACO, etc, (Selection type)
                 "Trajectory": traj,       # 1,2,3, as the trajectories (I think)
                 "Generation": int(year),  # Yr is generation
-                "Frequency": freq
+                "Frequency": float(freq)
             })
+
 
 # Convert to df
 long_df = pd.DataFrame(allele_data)
+
+# long_df.loc[long_df["pos" == 12323424]]
 
 # Convert categorical variables to dummy variables
 long_df = pd.get_dummies(long_df, columns=["Selection", "Trajectory"], drop_first=True)
@@ -35,14 +38,13 @@ print(long_df.dtypes)
 long_df["Frequency"] = pd.to_numeric(long_df["Frequency"], errors="coerce")
 long_df["Generation"] = pd.to_numeric(long_df["Generation"], errors="coerce")
 
+long_df = long_df.dropna()
+
+print(long_df.dtypes)
+
 X = long_df[["Generation"] + [col for col in long_df.columns if col.startswith("Selection_") or col.startswith("Trajectory_")]]
 y = long_df["Frequency"]
 
-# Add intercept for regression
 X = sm.add_constant(X)
-
-# Fit Linear Regression Model
 model = sm.OLS(y, X).fit()
-
-# Print coeffs/summary
 print(model.summary())
