@@ -1,0 +1,2 @@
+self organ map, competitive learning/selection (unsupervised) on the traj data
+
