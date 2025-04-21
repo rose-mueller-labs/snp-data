@@ -24,11 +24,11 @@ X_scaled = scaler.fit_transform(X)
 pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X_scaled)
 
-# Dimensionality Reduction with t-SNE (alternative)
+# Dimensionality Reduction with t-SNE (alternative) **
 tsne = TSNE(n_components=2, perplexity=2)
 X_tsne = tsne.fit_transform(X_scaled)
 
-# Clustering with K-Means
+# Clustering with K-Means **
 kmeans = KMeans(n_clusters=1, random_state=42)  # Assuming single population (CACO)
 df['Cluster'] = kmeans.fit_predict(X_scaled)
 
@@ -43,7 +43,7 @@ axes[0].set_title('PCA Projection')
 sns.scatterplot(x=X_tsne[:, 0], y=X_tsne[:, 1], hue=df['Pop'], ax=axes[1])
 axes[1].set_title('t-SNE Projection')
 
-# Frequency Trajectory Plot
+# Frequency Trajectory Plot (VISUAL)
 for i, row in df.iterrows():
     axes[2].plot(freq_cols, row[freq_cols], label=f"Sample {i+1}")
 axes[2].set_title('Frequency Trajectories')
@@ -51,13 +51,13 @@ axes[2].set_ylabel('Frequency')
 axes[2].legend()
 
 plt.tight_layout()
-plt.show()
+plt.savefig("clustervis")
 
-# Prediction function for new data
+# Prediction function for new data (for inference)
 def predict_population(new_frequencies):
     new_data = scaler.transform([new_frequencies])
     cluster = kmeans.predict(new_data)[0]
-    # In a real multi-population scenario, you would map clusters to populations
+    # In a real multi-population scenario, I would map clusters to populations
     # For now, just return cluster ID
     return f"Cluster {cluster}"
 
