@@ -1,0 +1,29 @@
+Finished loading.
+/home/drosophila-lab/Documents/Genomics Project/snp-data/supervised_evolving_model.py:20: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  features.replace([np.inf, -np.inf], np.nan, inplace=True)
+/home/drosophila-lab/Documents/Genomics Project/snp-data/supervised_evolving_model.py:21: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  features.dropna(inplace=True)
+Finished splitting.
+Started training.
+[Parallel(n_jobs=20)]: Using backend ThreadingBackend with 20 concurrent workers.
+[Parallel(n_jobs=20)]: Done  10 tasks      | elapsed:  2.0min
+[Parallel(n_jobs=20)]: Done  50 out of  50 | elapsed:  5.3min finished
+Finished training.
+[Parallel(n_jobs=20)]: Using backend ThreadingBackend with 20 concurrent workers.
+[Parallel(n_jobs=20)]: Done  10 tasks      | elapsed:    9.2s
+[Parallel(n_jobs=20)]: Done  50 out of  50 | elapsed:   24.0s finished
+[0.21839128 0.02702943 0.26330932 0.14166024 0.13119641 0.21841332]
+              precision    recall  f1-score   support
+
+           0       0.89      0.97      0.93   4658217
+           1       0.77      0.46      0.57   1048155
+
+    accuracy                           0.87   5706372
+   macro avg       0.83      0.71      0.75   5706372
+weighted avg       0.87      0.87      0.86   5706372

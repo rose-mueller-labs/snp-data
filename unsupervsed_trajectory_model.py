@@ -28,7 +28,7 @@ X_pca = pca.fit_transform(X_scaled)
 tsne = TSNE(n_components=2, perplexity=2)
 X_tsne = tsne.fit_transform(X_scaled)
 
-# Clustering with K-Means **
+# Clustering with K-Means ** (idk if this will be correct)
 kmeans = KMeans(n_clusters=1, random_state=42)  # Assuming single population (CACO)
 df['Cluster'] = kmeans.fit_predict(X_scaled)
 
@@ -40,8 +40,8 @@ sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=df['Pop'], ax=axes[0])
 axes[0].set_title('PCA Projection')
 
 # t-SNE Plot
-sns.scatterplot(x=X_tsne[:, 0], y=X_tsne[:, 1], hue=df['Pop'], ax=axes[1])
-axes[1].set_title('t-SNE Projection')
+# sns.scatterplot(x=X_tsne[:, 0], y=X_tsne[:, 1], hue=df['Pop'], ax=axes[1])
+# axes[1].set_title('t-SNE Projection')
 
 # Frequency Trajectory Plot (VISUAL)
 for i, row in df.iterrows():
