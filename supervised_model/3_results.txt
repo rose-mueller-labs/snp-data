@@ -1,0 +1,14 @@
+
+Feature importances (3):
+{'Pos': np.float64(0.2241214278651659), 'Freq1': np.float64(0.2434995227174544), 'Freq2': np.float64(0.14985943111882924), 'Freq3': np.float64(0.12651997457000652), 'Freq4': np.float64(0.22809784784854745), 'Pop_ANCO': np.float64(0.006251718692717262), 'Pop_CACO': np.float64(0.00829654052022615), 'Pop_CAO': np.float64(0.0070149214422218905), 'Pop_NACO': np.float64(0.006338615224831292)}
+
+Classification Report (3):
+              precision    recall  f1-score   support
+
+           0       0.90      0.97      0.93    931476
+           1       0.79      0.50      0.61    209799
+
+    accuracy                           0.88   1141275
+   macro avg       0.84      0.73      0.77   1141275
+weighted avg       0.88      0.88      0.87   1141275
+

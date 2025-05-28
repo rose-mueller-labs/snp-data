@@ -43,7 +43,7 @@ print('Finished splitting.')
 
 # Train model
 print('Started training.')
-clf = RandomForestClassifier(n_estimators=50, class_weight='balanced', random_state=42, verbose=1, n_jobs= 20)
+clf = RandomForestClassifier(n_estimators=100, class_weight='balanced', random_state=42, verbose=1, n_jobs= 20)
 clf.fit(X_train, y_train)
 print('Finished training.')
 

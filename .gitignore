@@ -1,1 +1,10 @@
 SNP_CSV.csv
+supervised_model/1_SNPs_model.pkl
+supervised_model/2_SNPs_model.pkl
+supervised_model/3_SNPs_model.pkl
+supervised_model/4_SNPs_model.pkl
+supervised_model/5_SNPs_model.pkl
+supervised_model/CAO_SNPs_model.pkl
+supervised_model/CACO_SNPs_model.pkl
+supervised_model/NACO_SNPs_model.pkl
+supervised_model/ANCO_SNPs_model.pkl

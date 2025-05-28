@@ -1,0 +1,7 @@
+we make one model for each genome (total of 9 models)
+
+each model will tell whether or not the genome is evolving or not
+
+we will test on SNPs from the other model and take the average
+
+round up said avg to get whether or not the snp is evolving
