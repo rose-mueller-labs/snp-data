@@ -1,39 +1,46 @@
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-df = pd.read_csv("/home/drosophila-lab/Documents/Genomics Project/snp-data/supervised_model/AllModels/all_pop_model_results.csv")
+# Load
+df = pd.read_csv("/home/drosophila-lab/Documents/Genomics Project/snp-data/supervised_model/AllModels/pop_sel_model_results.csv")
 
-colors = {'A': 'blue', 'C': 'orange'}
-markers = {'F1 Score': 'o', 'Accuracy': 's'}
+# Clean Threshold column to extract float value after the first 9 characters
+def extract_threshold(val):
+    if isinstance(val, str) and val.startswith("Threshold"):
+        return float(val[9:])
+    else:
+        try:
+            return float(val)
+        except:
+            return None
 
-df['Threshold_decimal'] = round(df['Threshold'].str[9:].astype(float), 1)
+df['Threshold_float'] = df['Threshold'].apply(extract_threshold)
+df = df.dropna(subset=['Threshold_float'])
 
-fig, axes = plt.subplots(1, 2, figsize=(16, 6))  # 1 row, 2 columns
+# Set up seaborn style
+sns.set(style="whitegrid", font_scale=1.2)
 
-# F1 Score Plot
-for pop in df['Population'].unique():
-    df_pop = df[df['Population'] == pop]
-    axes[0].scatter(df_pop['Threshold_decimal'], df_pop['F1 Score'],
-                    color=colors[pop], marker=markers['F1 Score'],
-                    label=f'{pop}', s=80, alpha=0.8)
-axes[0].set_xlabel('Threshold')
-axes[0].set_ylabel('F1 Score')
-axes[0].set_title('F1 Score vs Threshold by Population')
-axes[0].legend(title='Population')
-axes[0].grid(True)
+populations = df['Population'].unique()
+metrics = ['F1 Score', 'Accuracy']
 
-# Accuracy Plot
-for pop in df['Population'].unique():
-    df_pop = df[df['Population'] == pop]
-    axes[1].scatter(df_pop['Threshold_decimal'], df_pop['Accuracy'],
-                    color=colors[pop], marker=markers['Accuracy'],
-                    label=f'{pop}', s=80, alpha=0.8)
-axes[1].set_xlabel('Threshold')
-axes[1].set_ylabel('Accuracy')
-axes[1].set_title('Accuracy vs Threshold by Population')
-axes[1].legend(title='Population')
-axes[1].grid(True)
-
-plt.tight_layout()
-plt.savefig("per_pop_separate.png")
-plt.show()
+for metric in metrics:
+    for pop in populations:
+        plt.figure(figsize=(10, 6))
+        sub = df[df['Population'] == pop]
+        sns.lineplot(
+            data=sub,
+            x='Threshold_float',
+            y=metric,
+            hue='Selection',
+            palette='tab10',
+            marker='o',
+            legend='full'
+        )
+        plt.title(f"{metric} vs Threshold for {pop}")
+        plt.xlabel("Threshold")
+        plt.ylabel(metric)
+        plt.legend(title='Selection')
+        plt.tight_layout()
+        plt.savefig(f"{metric.replace(' ', '_').lower()}_vs_threshold_{pop}.png")
+        plt.close()
