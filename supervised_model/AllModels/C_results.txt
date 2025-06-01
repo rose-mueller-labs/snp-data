@@ -1,0 +1,13 @@
+
+Feature importances (C):
+{'Pos': np.float64(0.4327670623988716), 'Freq1': np.float64(0.25190619396109554), 'Freq2': np.float64(0.09835549690974918), 'Freq3': np.float64(0.047666838770564685), 'Freq4': np.float64(0.1693044079597192)}
+
+Classification Report (C):
+              precision    recall  f1-score   support
+
+           1       1.00      1.00      1.00    142660
+
+    accuracy                           1.00    142660
+   macro avg       1.00      1.00      1.00    142660
+weighted avg       1.00      1.00      1.00    142660
+

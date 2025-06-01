@@ -1,2 +1,47 @@
-self organ map, competitive learning/selection (unsupervised) on the traj data
+things i am gonna do (the hundred models)
+- add col to current DF with p-values
+    - add evolve/not evolve for different thresholds [add cols]
+    - keep the same df and just modifying the one column
+- one model per POP_SEL for each of the different p-value thresholds:
+    - see which threshold has the highest accuracy for the model (no split in training)
+    - test on the other POP_SELs to survey the accuracy
+- everything model for each p-value threshold:
+    - see which threshold overall has the highest accuracy (80-20 split here)
+- one model per C-types (CACO, CAO) and A-types for each p-value threshold:
+    - see which p-value threshold performs the best (no split in training)
+    - C model -> test on A's 
+    - A model -> test on C's
+- plot the scaling
+    - x = scale, y = accuracy
 
+-------------------------------------------------------------------------------------------
+
+scaling models of different significance thresholds for the binary of 
+“evolve/not evolve”.
+
+Instead of the current arrangement of Evo/Not Evo labels, pick different pvalue 
+thresholds such that 10,20,30…,80,90 percent of the data is labeled Evolving.
+
+You can do this with just one population, say CACO1 and then test on the remaining 
+19 populations, but be sure to preserve population labels from the testing data as 
+I wouldn’t be surprised if using a C trajectory population as training while testing 
+with an A trajectory population.
+
+Theoretically this should be relatively easy to run and sit back as it is just 
+modifying the current data frame and then rerunning the model generation code. 
+
+I’m curious to see what threshold produces the most with the highest accuracy metrics.
+
+And if you really wanted to (and the models have time to train), assuming that the 
+accuracy metrics make a kind of hump distribution, you could also try to narrow the 
+threshold further with 2% increases, (ie: 32,34,36,38 if the two highest accuracies 
+were 30 and 40).
+
+Depending on how long time takes, there might not be enough time to try out for 
+every population (ie: there’s already 15ish models for one population here which 
+is about the same number of models done previously)
+
+Also this should be very easy to graph in a cool way that’s intuitive to make 
+sense of
+
+Let me know if this makes sense to you.

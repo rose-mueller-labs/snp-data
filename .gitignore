@@ -9,3 +9,4 @@ supervised_model/CACO_SNPs_model.pkl
 supervised_model/NACO_SNPs_model.pkl
 supervised_model/ANCO_SNPs_model.pkl
 *.pkl
+DATA
