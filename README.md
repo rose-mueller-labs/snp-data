@@ -28,45 +28,6 @@ By analyzing SNP (single nucleotide polymorphism) data across multiple generatio
 
 ### Supervised: Random Forest
 
-```python
-import pandas as pd
-import numpy as np
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-
-# Load dataset
-df = pd.read_csv("SNP_CSV.csv")
-df['Evolving'] = df['Evolving'].astype(int)
-
-# Features and labels
-features = df[['Pos', 'Sel', 'Freq1', 'Freq2', 'Freq3', 'Freq4']]
-labels = df['Evolving']
-
-# Clean data
-features.replace([np.inf, -np.inf], np.nan, inplace=True)
-features.dropna(inplace=True)
-labels = labels.loc[features.index]
-
-# Split
-X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.2, random_state=42)
-
-# Train
-clf = RandomForestClassifier(
-    n_estimators=100,
-    class_weight='balanced',
-    random_state=42,
-    n_jobs=20,
-    verbose=1
-)
-clf.fit(X_train, y_train)
-
-# Evaluate
-y_pred = clf.predict(X_test)
-print(clf.feature_importances_)
-print(classification_report(y_test, y_pred))
-```
-
 Key steps:
 
 * Balanced class weighting to handle imbalance between evolving vs. non-evolving SNPs.
@@ -91,13 +52,7 @@ Key steps:
 ## ⚙️ Requirements
 
 * Python 3.9+
-* Packages: `pandas`, `numpy`, `scikit-learn`, `umap-learn`, `matplotlib`
-
-Install via:
-
-```bash
-pip install -r requirements.txt
-```
+* Packages: `pandas`, `numpy`, `scikit-learn`, `umap`, `matplotlib`
 
 ---
 
